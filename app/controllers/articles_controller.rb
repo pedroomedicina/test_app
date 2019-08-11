@@ -12,7 +12,6 @@ class ArticlesController < ApplicationController
   end
 
   def edit
-
   end
 
   def create
@@ -27,7 +26,6 @@ class ArticlesController < ApplicationController
   end
 
   def update
-
     if @article.update(article_params)
       flash[:success] = "Article Updated :D!"
       redirect_to article_path(@article)
@@ -37,13 +35,10 @@ class ArticlesController < ApplicationController
   end
 
   def show
-
   end
 
   def destroy
-
     @article.destroy
-
     flash[:danger] = "Article successfully deleted"
     redirect_to articles_path
   end
@@ -52,6 +47,7 @@ class ArticlesController < ApplicationController
     def set_article
       @article = Article.find(params[:id])
     end
+
     def article_params
       params.require(:article).permit(:title,:description)
     end
@@ -60,5 +56,6 @@ class ArticlesController < ApplicationController
       if current_user != @article.user
       flash[:danger] = "You can only edit or delete your own articles"
       redirect_to root_path
+      end
     end
 end
